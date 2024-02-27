@@ -1,7 +1,8 @@
 <h1><%= @blog.title %></h1>
-by: <%= current_user.email %></span>
+by: <%= current_user&.email %></span>
 Created: <%= formatted_timestamp(@blog.created_at) %>
 Last update: <%= formatted_timestamp(@blog.updated_at) %> 
+
 <% if @blog.user.email == current_user.email || current_user&.admin%>
   <%= link_to "Edit", edit_blog_path(@blog), class: "btn btn-primary" %> - 
   <%= link_to "Destroy", blog_path(@blog), data: {
@@ -16,15 +17,16 @@ Last update: <%= formatted_timestamp(@blog.updated_at) %>
 <% @blog.comments.each do |comment| %>
   <p>
     <strong>User:</strong>
-    <%= comment.user.email %>
-  </p>
-  <p>
+    <%= comment.user.email %> - 
     <%= comment.body %>
   </p>
+
+ <% if comment.user_id == current_user.id || current_user&.admin %>
     <%= link_to "Destroy Comment", [comment.blog, comment], data: {
                   turbo_method: :delete,
                   turbo_confirm: "Are you sure?"
                   } %>
+  <% end %>
 <% end %>
 
 <h2>Add Comment</h2>

@@ -40,7 +40,6 @@ class BlogsController < ApplicationController
   
   # DELETE /blogs/1
   def destroy
-    #binding.break
     @blog.destroy
     redirect_to blogs_url, notice: 'Blog was successfully destroyed.', status: :see_other
   end

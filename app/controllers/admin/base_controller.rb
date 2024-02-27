@@ -4,7 +4,10 @@ module Admin
 
         private
         def check_if_admin
-            redirect_to root_path unless current_user.admin?
+          if current_user.nil? || !current_user.admin?
+            flash[:alert] = "You need to be an admin"
+            redirect_to root_path
+          end
         end
     end
 end
