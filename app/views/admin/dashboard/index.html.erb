@@ -1,13 +1,31 @@
 <h1>Hello, welcome to admin section</h1>
 
-<h1>All Users</h1>
-
+<ul>
 <% @users.each do |user| %>
-  <h2><%= user.email %></h2>
-  <% user.blogs.each do |blog| %>
-    <div>
-      <strong><%= blog.title %></strong><br>
-      <%= blog.content %>
-    </div>
-  <% end %>
+  <li><%= user.id %>-<%= user.email %></li>
+      <ul>
+      <% user.blogs.each do |blog| %>
+       <li><%= blog.title %>
+       <%= link_to "Destroy", blog_path(blog), 
+                   data: {
+                          turbo_method: :delete,
+                          turbo_confirm: "Are you sure?",
+                          class: "btn btn-danger"
+                    } 
+                %>
+       </li>
+       <ul>
+         <% blog.comments.each do |comment| %>
+          <li> <%= comment.body%>
+               <%= link_to "Destroy Comment", [comment.blog, comment], data: {
+                  turbo_method: :delete,
+                  turbo_confirm: "Are you sure?"
+                  } %>
+          </li>
+         <% end %>   
+        </ul>
+      <% end %>
+    </ul>
 <% end %>
+</ul>
+  

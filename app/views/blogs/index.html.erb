@@ -1,15 +1,16 @@
 <h1>Welcome to our home page</h1>
 
 <h1 class= "title">Blogs</h1>
-
+<ul>
 <% @blogs.each do |blog| %>
-  <%= blog.title %>
+  <li><%= blog.title %>
   created by: <%= blog.user.email %>
   <%= truncate(blog.body, length: 40) %>
   Created: <%= formatted_timestamp(blog.created_at) %>
   <%= link_to "See the blog", blog %>
   <% end %>
-
+  </li>
+</ul>
 <br>
 <%= link_to "Home", root_path %>  
 <% if user_signed_in? || current_user&.admin %> 
