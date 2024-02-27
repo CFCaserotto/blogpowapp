@@ -1,1 +1,13 @@
 <h1>Hello, welcome to admin section</h1>
+
+<h1>All Users</h1>
+
+<% @users.each do |user| %>
+  <h2><%= user.email %></h2>
+  <% user.blogs.each do |blog| %>
+    <div>
+      <strong><%= blog.title %></strong><br>
+      <%= blog.content %>
+    </div>
+  <% end %>
+<% end %>

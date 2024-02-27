@@ -1,7 +1,6 @@
 module Admin
     class BaseController < ApplicationController
         before_action :check_if_admin
-
         private
         def check_if_admin
           if current_user.nil? || !current_user.admin?
