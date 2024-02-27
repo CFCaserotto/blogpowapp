@@ -1,1 +1,18 @@
-<h1>Welcome, this is our home page</h1>
+<h1>Welcome to our home page</h1>
+
+<h1 class= "title">Blogs</h1>
+
+<% @blogs.each do |blog| %>
+  <%= blog.title %>
+  created by: <%= blog.user.email %>
+  <%= truncate(blog.body, length: 40) %>
+  Created: <%= formatted_timestamp(blog.created_at) %>
+  <%= link_to "See the blog", blog %>
+  <% end %>
+
+<br>
+<%= link_to "Home", root_path %>  
+<% if user_signed_in? || current_user&.admin %> 
+  | <%= link_to "New Blog", new_blog_path %>
+<% end %>
+</div>

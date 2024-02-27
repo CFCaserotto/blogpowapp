@@ -5,6 +5,10 @@ Rails.application.routes.draw do
     resources :dashboard
   end
 
+  resources :blogs do
+    resources :comments
+  end
+
   root 'blogs#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
