@@ -1,10 +1,13 @@
 <% @blog.comments.each do |comment| %>
   <div class="comment" style="margin-top: 5px; margin-bottom: 5px;">
     <div class="comment-user">
-      <strong>User:</strong> <%= comment.user.email %>
+      <strong>Commenter:</strong> <%= comment.user.email %>
     </div>
     <div class="comment-text">
-      <strong>Comment:</strong> <%= comment.body %>
+      <strong>Comment:</strong> <%= comment.body %> 
+    </div>
+    <div class="blog-info">
+      Created: <%= formatted_timestamp(comment.created_at) %>
     </div>
       <div class="delete-button" style="margin-top: 5px;"> 
       <% if comment.user_id == current_user.id || current_user&.admin %>
