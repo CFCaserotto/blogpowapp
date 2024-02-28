@@ -40,8 +40,13 @@ class BlogsController < ApplicationController
   
   # DELETE /blogs/1
   def destroy
-    @blog.destroy
-    redirect_to blogs_url, notice: 'Blog was successfully destroyed.', status: :see_other
+    if current_user.admin?
+      @blog.destroy
+      redirect_to admin_dashboard_index_path, notice: 'Blog was successfully destroyed.', status: :see_other
+    else
+      @blog.destroy
+      redirect_to blogs_url, notice: 'Blog was successfully destroyed.', status: :see_other
+    end
   end
   
   private
