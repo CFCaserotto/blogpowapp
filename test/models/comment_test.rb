@@ -2,8 +2,10 @@ require "test_helper"
 
 class CommentTest < ActiveSupport::TestCase
   def setup
-    @user = User.new(email: 'example@example.com', password: 'password')
-    @blog = Blog.new(title: 'Title', body: 'Body')
+    @user = users(:user)
+    @blog = blogs(:blog)
+    #@user = User.new(email: 'example@example.com', password: 'password')
+    #@blog = Blog.new(title: 'Title', body: 'Body')
     @comment = Comment.new(body: 'Test comment', user: @user, blog: @blog)
   end
 
