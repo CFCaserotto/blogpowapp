@@ -1,24 +1,12 @@
 # README
+The app was created using -j esbuild --css bootstrap --database=postgresql 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The seed will create and admin user, some regulars users, blogs and comments.
 
-Things you may want to cover:
+Version
+ruby "3.0.6"
+gem "rails", "~> 7.1.3", ">= 7.1.3.2"
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Gems:
+gem 'devise'
+gem 'rails-controller-testing'
