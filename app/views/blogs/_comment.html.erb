@@ -1,0 +1,18 @@
+<% @blog.comments.each do |comment| %>
+  <div class="comment" style="margin-top: 5px; margin-bottom: 5px;">
+    <div class="comment-user">
+      <strong>User:</strong> <%= comment.user.email %>
+    </div>
+    <div class="comment-text">
+      <strong>Comment:</strong> <%= comment.body %>
+    </div>
+      <div class="delete-button" style="margin-top: 5px;"> 
+      <% if comment.user_id == current_user.id || current_user&.admin %>
+        <%= link_to "Delete Comment", [comment.blog, comment], data: {
+                turbo_method: :delete,
+                turbo_confirm: "Are you sure?"
+                }, class: "btn btn-danger btn-sm" %>
+     <% end %>
+    </div>
+  </div>
+<% end %>

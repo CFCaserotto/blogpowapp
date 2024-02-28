@@ -1,47 +1,41 @@
-<h1><%= @blog.title %></h1>
-by: <%= current_user&.email %></span>
-Created: <%= formatted_timestamp(@blog.created_at) %>
-Last update: <%= formatted_timestamp(@blog.updated_at) %> 
+<div class="row justify-content-center">
+  <div class="col-md-8"> 
+    <h1><%= @blog.title %></h1>
+    <div class="blog-info">
+      by: <%= current_user&.email %>
+    </div>
+    <div class="blog-info">
+      Created: <%= formatted_timestamp(@blog.created_at) %>
+    </div>
+    <div class="blog-info">
+      Last update: <%= formatted_timestamp(@blog.updated_at) %>
+    </div>
+    <div class="blog-body">
+      <%= @blog.body %>
+    </div>
+    <div class="edit-destroy-buttons">
+      <% if @blog.user.email == current_user.email || current_user&.admin %>
+        <%= link_to "Edit", edit_blog_path(@blog), class: "btn btn-warning btn-sm" %> - 
+        <%= link_to "Delete Blog", blog_path(@blog), data: {
+          turbo_method: :delete,
+          turbo_confirm: "Are you sure?"
+        }, class: "btn btn-danger btn-sm" %>
+      <% end %>
+    </div>
+    
+    <div class="comments" style="margin-top: 8px; margin-bottom: 8px;">
+      <h2>Comments</h2>
+      <%= render "comment" %>
+    </div>
 
-<% if @blog.user.email == current_user.email || current_user&.admin%>
-  <%= link_to "Edit", edit_blog_path(@blog), class: "btn btn-primary" %> - 
-  <%= link_to "Destroy", blog_path(@blog), data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?",
-                    class: "btn btn-danger"
-                  } %>
+    <div class="add-comment">
+      <h2>Add Comments:</h2>
+      <%= render "comment_form", obj: @blog %>
+    </div>
 
-<% end %>
-
-<h2>Comments</h2>
-<% @blog.comments.each do |comment| %>
-  <p>
-    <strong>User:</strong>
-    <%= comment.user.email %> - 
-    <%= comment.body %>
-  </p>
-
- <% if comment.user_id == current_user.id || current_user&.admin %>
-    <%= link_to "Destroy Comment", [comment.blog, comment], data: {
-                  turbo_method: :delete,
-                  turbo_confirm: "Are you sure?"
-                  } %>
-  <% end %>
-<% end %>
-
-<h2>Add Comment</h2>
-<%= form_with(model: [ @blog, @blog.comments.build ], local: true) do |form| %>
-  <div class="field">
-    <%= form.label :Comment %>
-    <%= form.text_area :body %>
+    <div class="btn-wrapper" style="margin-top: 20px;">
+      <%= link_to 'Edit Blog', edit_blog_path(@blog), class: "btn btn-warning btn-sm mr-1" %> |
+      <%= link_to 'Back', blogs_path, class: "btn btn-success btn-sm" %> 
+    </div>    
   </div>
-   <div class="field">
-    <%= form.hidden_field :user_id, value: current_user.id %>
-  </div>
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
-
-<%= link_to 'Edit', edit_blog_path(@blog) %> |
-<%= link_to 'Back', blogs_path %>
+</div>

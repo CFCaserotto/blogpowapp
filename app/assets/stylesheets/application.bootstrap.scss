@@ -1,2 +1,52 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+.blog-info {
+  display: inline-block;
+  padding: 0.15rem 0.3rem;
+  background-color: #007bff;
+  color: white;
+  font-size: 0.75rem;
+  border-radius: 0.5rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+  
+.edit-destroy-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+  
+.edit-destroy-buttons a.btn {
+  font-size: 0.8rem; 
+}
+  
+.blog-body {
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+  
+.bottom-buttons {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+  
+.flash-container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 5px;
+  font-size: 14px;
+  width: 800px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+  

@@ -11,12 +11,13 @@
   </head>
 
   <body>
-    <%= render 'layouts/navbar' %>     
-    
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p> 
-    
-
-    <%= yield %>
+    <%= render 'layouts/navbar' %>      
+    <div class="wrapper">
+      <div class="flash-container">
+        <%= render 'layouts/flash' %>     
+      </div>
+      
+      <%= yield %>
+    </div>
   </body>
 </html>

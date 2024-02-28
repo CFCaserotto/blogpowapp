@@ -1,31 +1,26 @@
-<h1>Hello, welcome to admin section</h1>
+<h1 class="display-4">Hello, welcome to admin section</h1>
 
-<ul>
-<% @users.each do |user| %>
-  <li><%= user.id %>-<%= user.email %></li>
-      <ul>
-      <% user.blogs.each do |blog| %>
-       <li><%= blog.title %>
-       <%= link_to "Destroy", blog_path(blog), 
-                   data: {
-                          turbo_method: :delete,
-                          turbo_confirm: "Are you sure?",
-                          class: "btn btn-danger"
-                    } 
-                %>
-       </li>
-       <ul>
-         <% blog.comments.each do |comment| %>
-          <li> <%= comment.body%>
-               <%= link_to "Destroy Comment", [comment.blog, comment], data: {
-                  turbo_method: :delete,
-                  turbo_confirm: "Are you sure?"
-                  } %>
+<ul class="list-group">
+  <% @users.each do |user| %>
+    <li class="list-group-item">
+      <strong>User ID: <%= user.id %></strong><br>
+      <strong>User Email: <%= user.email %></strong><br>
+      <ul class="list-group">
+        <% user.blogs.each do |blog| %>
+          <li class="list-group-item">
+            <%= blog.title %>
+            <%= link_to "Delete Blog", blog_path(blog), class: "btn btn-sm btn-danger ms-2", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+            <ul class="list-group">
+              <% blog.comments.each do |comment| %>
+                <li class="list-group-item">
+                  <%= comment.body %>
+                  <%= link_to "Delete Comment", [comment.blog, comment], class: "btn btn-sm btn-danger ms-2", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+                </li>
+              <% end %>
+            </ul>
           </li>
-         <% end %>   
-        </ul>
-      <% end %>
-    </ul>
-<% end %>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
 </ul>
-  
